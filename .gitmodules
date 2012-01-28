@@ -1,0 +1,3 @@
+[submodule "impress.world.js"]
+	path = impress.world.js
+	url = git@github.com:csainty/impress.js.git
