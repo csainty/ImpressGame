@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'CarbonTypeRegular';
+    src: url('carbontype-webfont.eot');
+    src: url('carbontype-webfont.eot?#iefix') format('embedded-opentype'),
+         url('carbontype-webfont.woff') format('woff'),
+         url('carbontype-webfont.ttf') format('truetype'),
+         url('carbontype-webfont.svg#CarbonTypeRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
