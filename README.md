@@ -7,4 +7,6 @@ The arrow keys are mapped to move through this space instead of simply progressi
 
 Features include auto progress "action" scenes and one-way "exit" scenes that always exit by a single path.
 
+See it in action - http://csainty.github.com/ImpressGame
+
 Twitter: [@csainty](http://www.twitter.com/csainty)
