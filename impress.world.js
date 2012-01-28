@@ -88,6 +88,16 @@
         return " scale(" + s + ") ";
     }
     
+    var parseLoc = function( loc ) {
+    	if (!loc) { return false; }
+    	var bits = loc.split(',');
+    	return [
+    		parseFloat(bits.length >= 1 ? bits[0] : '0', 10),
+    		parseFloat(bits.length >= 2 ? bits[1] : '0', 10),
+    		parseFloat(bits.length >= 3 ? bits[2] : '0', 10)
+    	];
+    };
+
     // CHECK SUPPORT
     
     var ua = navigator.userAgent.toLowerCase();
@@ -149,12 +159,11 @@
 
     steps.forEach(function ( el, idx ) {
         var data = el.dataset,
-        	locData = data.loc.split(','),
-            loc = [ parseInt(locData[0]), parseInt(locData[1]) ],
+            loc = parseLoc(data.loc),
             step = {
                 translate: {
                     x: loc[0] * 1000 || 0,
-                    y: data.y || 0,
+                    y: loc[2] * -1000 || 0,
                     z: loc[1] * -1000 || 0
                 },
                 rotate: {
@@ -163,7 +172,9 @@
                     z: data.rotateZ || data.rotate || 0
                 },
                 scale: data.scale || 1,
-                loc: loc || [0, 0]
+                loc: loc || [0, 0],
+                exit: parseLoc(data.exit),
+                auto:  parseLoc(data.auto)
             };
         
         el.stepData = step;
@@ -184,11 +195,12 @@
 
     artefacts.forEach(function ( el, idx ) {
         var data = el.dataset,
+        	loc = parseLoc(data.loc),
             artefact = {
                 translate: {
-                    x: data.x || 0,
-                    y: data.y || 0,
-                    z: data.z || 0
+                    x: loc[0] * 1000 || 0,
+                    y: loc[2] * -1000 || 0,
+                    z: loc[1] * -1000 || 0
                 },
                 rotate: {
                     x: data.rotateX || 0,
@@ -306,14 +318,25 @@
         current = target;
         active = el;
         
+        if (active.stepData.auto) {
+        	setTimeout(function() {
+        		goLoc(active.stepData.auto);
+        	}, 1000);
+        }
+
         return el;
     };
     
     var goLoc = function (loc) {
     	var index;
-    	console.log(loc);
+
+    	if (active.stepData.exit) {
+    		// override the exit with a specific path
+    		loc= active.stepData.exit;
+    	}
+
     	steps.forEach(function ( el, i ) {
-    		if (el.stepData && el.stepData.loc[0] === loc[0] && el.stepData.loc[1] === loc[1]) {
+    		if (el.stepData && el.stepData.loc[0] === loc[0] && el.stepData.loc[1] === loc[1] && el.stepData.loc[2] === loc[2]) {
     			index= i;
     			return false;
     		}
@@ -321,7 +344,7 @@
     	if (index != undefined) {
     		return select(steps[index]);
     	}
-    }
+    };
     
 	var goLeft = function () {
 		var loc = active.stepData.loc.slice(0);
@@ -346,10 +369,22 @@
 		loc[1] -= 1;
 		goLoc(loc);
 	};
+
+	var goPageUp = function () {
+		var loc = active.stepData.loc.slice(0);
+		loc[2] += 1;
+		goLoc(loc);
+	};
+	
+	var goPageDown = function () {
+		var loc = active.stepData.loc.slice(0);
+		loc[2] -= 1;
+		goLoc(loc);
+	};
     // EVENTS
     
     document.addEventListener("keydown", function ( event ) {
-        if ( event.keyCode == 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
+        if ( ( event.keyCode >= 33 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
             switch( event.keyCode ) {
                 case 37:   // left
                 		goLeft();
@@ -363,6 +398,12 @@
                 case 40:   // down
                         goDown();
                         break;
+                case 33:  // page up
+                		goPageUp();
+                		break;
+               	case 34: // page down
+               			goPageDown();
+               			break;
             }
             
             event.preventDefault();

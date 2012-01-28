@@ -13,10 +13,26 @@
         <p>For the best experience please use the latest <b>Chrome</b> or <b>Safari</b> browser.</p>
     </div>
 
-	<div id="start" class="scene" data-loc="0,0">
-		<h1>Hello,</h1>
+    <!-- Intro Screen -->
+    <div id="intro" class="scene" data-loc="0,-1,0" data-exit="0,0,0">
+    	<h1>Hello,</h1>
+    	<p>You have found your way to my little tech demo.</p>
+    	<p>The idea is a text adventure engine powered by impress.js</p>
+    	<p>Don't mind the awful writing, this is simply an example of the features of the engine</p>
+    	<p>Reach out to me <a href="http://www.twitter.com/csainty">twitter</a> or <a href="https://github.com/csainty">github</a> <br/>
+    	- Chris Sainty</p>
+    	<p></p>
+    	<p class="hint">
+    		Press any arrow key to start.
+    	</p>
+    </div>
+
+    <!-- First Floor -->
+
+	<div id="start" class="scene" data-loc="0,0,0">
+		<h1>Doorstep</h1>
 		<p>
-			You stand outside a castle.<br/>
+			You stand outside a house.<br/>
 			A door is in front of you.<br/>
 			There is no turning back now.
 		</p>
@@ -25,45 +41,80 @@
 		</p>
 	</div>
 
-	<!--
-	<div class="artefact" data-x="0" data-y="0" data-z="-100" data-scene="foyer" data-rotate="25">
-		<p>Screech...</p>
-	</div>
-	-->
-
-	<div id="foyer" class="scene" data-loc="0,1">
-		<h1>Foyer</h1>
+	<div id="foyer" class="scene" data-loc="0,1,0">
+		<h1>Ground Floor Foyer</h1>
 		<p>
-			You have entered the foyer.<br/>
-			To your left is a room.
+			You are in the foyer.<br/>
+			The vast house extends in every direction.<br/>
+			In front of you, the stairwell rises to the second floor.
+		</p>
+		<p class="hint">
+			Use Page Up to climb the stairs.
 		</p>
 	</div>
 
-	<div id="room1" class="scene" data-loc="-1,1">
-		<h1>Room 1</h1>
+	<div id="dining" class="scene" data-loc="-1,1,0">
+		<h1>Dining Room</h1>
 		<p>
-			You are in the room.
+			The dining table appears recently set.<br/>
+			Missing, however, are the diners.<br/>
+			<br/>
+			Surrounded by windows, your only option is to return east to the foyer.
 		</p>
 	</div>
 
-	<div id="room2" class="scene" data-loc="1,1">
-		<h1>Room 2</h1>
+	<div id="room2" class="scene" data-loc="1,1,0">
+		<h1>Hallway</h1>
 		<p>
-			You are in the room.
+			Along the interior wall of the hallway tapestries depict the history of the family.<br/>
+			The outer wall of the hose is lined with windows overlooking the grounds.
 		</p>
 	</div>
 
-	<div id="room3" class="scene" data-loc="0,2">
-		<h1>Room 3</h1>
+	<div id="room3" class="scene" data-loc="0,2,0">
+		<h1>Maid Station</h1>
 		<p>
-			You are in the room.
+			Tucked behind the grand staircase you find a small alcove where the maid should be on duty.<br />
+			She is not.
 		</p>
 	</div>
 
-	<div id="room4" class="scene" data-loc="2,1">
-		<h1>Room 4</h1>
+	<div id="room4" class="scene" data-loc="2,1,0" data-exit="2,1,-.5">
+		<h1>Library</h1>
 		<p>
-			You are in the room.
+			You enter the library, the boards squeak under your feet.<br/>
+			A layer of dust coats most surfaces.
+		</p>
+	</div>
+
+	<!-- Second Floor -->
+	<div id="upstairs" class="scene" data-loc="0,1,1">
+		<h1>First Floor</h1>
+		<p>
+			You stand atop the stairwell.<br/>
+			Nothing to see here.
+		</p>
+		<p class="hint">
+			Use Page Down to descend the stairs.
+		</p>
+	</div>
+
+	<!-- Basement -->
+	<div id="librarycrack" class="scene" data-loc="2,1,-.5" data-auto="2,1,-1">
+		<p>*crack*</p>
+		<p class="big">Arrrggghhhh...</p>
+	</div>
+
+	<div id="basement" class="scene" data-loc="2,1,-1">
+		<h1>Basement</h1>
+		<p>
+			The splintered boards of the hole you just fell through litter the floor.<br/>
+			You appear trapped.<br/>
+		</p>
+		<p class="hint">
+			...and that is where the story ends.<br/>
+			I hope you enjoyed this little tech demo.<br/>
+			- Chris Sainty
 		</p>
 	</div>
 
@@ -72,3 +123,6 @@
 <script type="text/javascript" src="impress.world.js"></script>
 </body>
 </html>
+
+
+
