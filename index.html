@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html>
+<head>
+	<link rel="stylesheet" href="fonts/carbontype/stylesheet.css" />
+	<link rel="stylesheet" href="game.css" />
+</head>
+<body>
+
+<div id="impress" class="impress-not-supported">
+    <div class="fallback-message">
+        <p>Your browser <b>doesn't support the features required</b> by this game.</p>
+        <p>For the best experience please use the latest <b>Chrome</b> or <b>Safari</b> browser.</p>
+    </div>
+
+	<div id="start" class="scene" data-loc="0,0">
+		<h1>Hello,</h1>
+		<p>
+			You stand outside a castle.<br/>
+			A door is in front of you.<br/>
+			There is no turning back now.
+		</p>
+		<p class="hint">
+			Use your arrow keys to move forward. (Up)
+		</p>
+	</div>
+
+	<!--
+	<div class="artefact" data-x="0" data-y="0" data-z="-100" data-scene="foyer" data-rotate="25">
+		<p>Screech...</p>
+	</div>
+	-->
+
+	<div id="foyer" class="scene" data-loc="0,1">
+		<h1>Foyer</h1>
+		<p>
+			You have entered the foyer.<br/>
+			To your left is a room.
+		</p>
+	</div>
+
+	<div id="room1" class="scene" data-loc="-1,1">
+		<h1>Room 1</h1>
+		<p>
+			You are in the room.
+		</p>
+	</div>
+
+	<div id="room2" class="scene" data-loc="1,1">
+		<h1>Room 2</h1>
+		<p>
+			You are in the room.
+		</p>
+	</div>
+
+	<div id="room3" class="scene" data-loc="0,2">
+		<h1>Room 3</h1>
+		<p>
+			You are in the room.
+		</p>
+	</div>
+
+	<div id="room4" class="scene" data-loc="2,1">
+		<h1>Room 4</h1>
+		<p>
+			You are in the room.
+		</p>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="impress.world.js"></script>
+</body>
+</html>
