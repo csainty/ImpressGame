@@ -1,4 +1,4 @@
-Here is a small tech demo that shows off a text adventure game written on a forked copy of impress.js
+Here is a small tech demo that shows off a text adventure game written on a forked copy of [impress.js](https://github.com/impress/impress.js)
 
 Steps are replaced with scenes. Each scene has a location within a 3D matrix.  
 These locations are then translated into the impress.js coordinates.
